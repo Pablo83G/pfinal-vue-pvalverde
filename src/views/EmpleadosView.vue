@@ -115,7 +115,7 @@ export default {
       { text: 'Fecha de nacimiento', value: 'fecha_nacimiento' },
       { text: 'Estado civil', value: 'estado_civil' },
       { text: 'Servicio militar', value: 'servicio_militar' },
-      { text: 'Actions', value: 'actions', sortable: false },
+      { text: 'Dar de baja', value: 'actions', sortable: false },
     ],
     empleados: [],
     editedIndex: -1,
@@ -153,6 +153,7 @@ export default {
     formTitle() {
       return this.editedIndex === -1 ? 'Alta epmleado' : 'Editar Empleado'
     },
+
   },
 
   watch: {
