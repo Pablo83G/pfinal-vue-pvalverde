@@ -1,5 +1,5 @@
 <template>
-  <v-data-table :headers="headers" :items="empleados" sort-by="calories" class="elevation-1">
+  <v-data-table :headers="headers" :items="empleados" sort-by="calories" class=" elevation-1">
     <template v-slot:top>
       <v-toolbar flat>
         <v-toolbar-title>CONSULTA DE EMPLEADOS</v-toolbar-title>
@@ -106,7 +106,7 @@ export default {
     //   email: value => /.+@.+\..+/.test(value) || 'Email inválido.'
     // },
     headers: [
-      { text: 'NIF', value: 'nif' },
+      { text: 'NIF', value: 'nif', class: "indigo lighten-2"},
       { text: 'Nombre', value: 'nombre' },
       { text: 'Primer apellido', value: 'primer_apellido' },
       { text: 'Segundo apellido', value: 'segundo_apellido' },
@@ -268,3 +268,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.tabla-empleados{
+  background-color: blue;
+}
+
+</style>
