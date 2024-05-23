@@ -1,19 +1,19 @@
 <template>
-  <v-data-table :headers="headers" :items="empleados" sort-by="calories" class=" elevation-1">
+  <v-data-table :headers="headers" :items="empleados"   class="tabla-empleados elevation-1 ">
     <template v-slot:top>
-      <v-toolbar flat>
-        <v-toolbar-title>CONSULTA DE EMPLEADOS</v-toolbar-title>
-        <v-divider class="mx-4" inset vertical></v-divider>
+      <v-toolbar flat >
+        <v-toolbar-title ><strong>CONSULTA DE EMPLEADOS</strong></v-toolbar-title>
+        <v-divider class="mx-4" inset vertical ></v-divider>
         <v-spacer></v-spacer>
         <v-dialog v-model="dialog" max-width="700px">
           <template v-slot:activator="{ on, attrs }">
-            <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
+            <v-btn color="#001021" dark class="mb-2" v-bind="attrs" v-on="on">
               ALTA EMPLEADO
             </v-btn>
           </template>
-          <v-card>
-            <v-card-title>
-              <span class="text-h5">{{ formTitle }}</span>
+          <v-card style="background-color: rgb(244, 241, 248)">
+            <v-card-title >
+              <span class=" text-h5" ><strong>{{ formTitle }}</strong></span>
             </v-card-title>
 
             <v-card-text>
@@ -58,10 +58,10 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="close">
+              <v-btn color="#001021" text @click="close">
                 CANCELAR
               </v-btn>
-              <v-btn color="blue darken-1" text @click="save">
+              <v-btn color="#001021" text @click="save">
                 ACEPTAR
               </v-btn>
             </v-card-actions>
@@ -72,8 +72,8 @@
             <v-card-title class="text-h5">¿Seguro que quieres dar de baja a este empleado?</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-              <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+              <v-btn color="#001021" text @click="closeDelete">Cancel</v-btn>
+              <v-btn color="#001021" text @click="deleteItemConfirm">OK</v-btn>
               <v-spacer></v-spacer>
             </v-card-actions>
           </v-card>
@@ -82,13 +82,8 @@
     </template>
     <template v-slot:item.actions="{ item }">
       <v-icon small @click="deleteItem(item)">
-        mdi-close-box-outline
+        mdi-close-box
       </v-icon>
-    </template>
-    <template v-slot:no-data>
-      <v-btn color="primary" @click="initialize">
-        Reset
-      </v-btn>
     </template>
   </v-data-table>
 </template>
@@ -106,7 +101,7 @@ export default {
     //   email: value => /.+@.+\..+/.test(value) || 'Email inválido.'
     // },
     headers: [
-      { text: 'NIF', value: 'nif', class: "indigo lighten-2"},
+      { text: 'NIF', value: 'nif'},
       { text: 'Nombre', value: 'nombre' },
       { text: 'Primer apellido', value: 'primer_apellido' },
       { text: 'Segundo apellido', value: 'segundo_apellido' },
@@ -151,7 +146,7 @@ export default {
 
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? 'Alta epmleado' : 'Editar Empleado'
+      return this.editedIndex === -1 ? 'ALTA EMPLEADO' : 'Editar Empleado'
     },
 
   },
@@ -190,17 +185,6 @@ export default {
       }
     },
 
-    // async altaEmpleado(){
-    //   try {
-    //     const response = await axios.post('http://localhost:8080/empleados/createEmpleado', this.editItem)
-    //     const respJson = await response.json()
-    //     this.empleados = response.data
-    //     console.log('Este es el nuevo empleado ' + respJson)
-    //   } catch (error) {
-
-    //   }
-    // },
-
     editItem(item) {
       // indexOf() retorna el primer índice en el que se puede encontrar un elemento dado en el 
       //array, ó retorna -1 si el elemento no esta presente
@@ -218,7 +202,7 @@ export default {
 
     async deleteItemConfirm() {
       try {
-        await axios.put(`http://localhost:8080/empleados/udpdateEmpleado/${this.editedItem.id_empleado}`)
+        await axios.put(`http://localhost:8080/empleados/udpdateEmpleado/${this.editedItem.idEmpleado}`)
         this.empleados.splice(this.editedIndex, 1)
         // Swal.fire({
         //   icon: 'success',
@@ -271,7 +255,9 @@ export default {
 
 <style>
 .tabla-empleados{
-  background-color: blue;
+  background-color: rgb(182, 182, 252);
 }
-
+.texto-card{
+  color: rgb(106, 106, 197) !important;
+}
 </style>

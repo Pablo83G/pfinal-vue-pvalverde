@@ -3,7 +3,7 @@
         <v-row class="seleccionable justify-left">
             <!-- <v-spacer></v-spacer> -->
             <v-col>
-                <v-select chips label="Selecciona un proyecto" :items="proyectos" item-text="descripcion" item-value="id_proyecto" variant="outlined">
+                <v-select chips label="Selecciona un proyecto" :items="proyectos" item-text="descripcion" item-value="idProyecto" variant="outlined">
                 </v-select>
             </v-col>
         </v-row>
@@ -22,7 +22,7 @@
             <v-col>
                 <div class="text-center">
                         <v-btn class="ma-2" color="primary">
-                            Acceptar
+                            Aceptar
                             <v-icon color="white" icon="mdi-check-circle" size="small"></v-icon>
                         </v-btn>
                     </div>

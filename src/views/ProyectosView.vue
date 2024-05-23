@@ -2,12 +2,12 @@
     <v-data-table :headers="headers" :items="proyectos" sort-by="calories" class="elevation-1">
       <template v-slot:top>
         <v-toolbar flat>
-          <v-toolbar-title>CONSULTA PROYECTOS</v-toolbar-title>
+          <v-toolbar-title><strong>CONSULTA DE PROYECTOS</strong></v-toolbar-title>
           <v-divider class="mx-4" inset vertical></v-divider>
           <v-spacer></v-spacer>
           <v-dialog v-model="dialog" max-width="500px">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" dark class="mb-2" v-bind="attrs" v-on="on">
+              <v-btn color="#001021" dark class="mb-2" v-bind="attrs" v-on="on">
                 ALTA PROYECTO
               </v-btn>
             </template>
@@ -40,10 +40,10 @@
   
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close">
+                <v-btn color="#001021" text @click="close">
                   CANCELAR
                 </v-btn>
-                <v-btn color="blue darken-1" text @click="save">
+                <v-btn color="#001021" text @click="save">
                   ACEPTAR
                 </v-btn>
               </v-card-actions>
@@ -54,8 +54,8 @@
               <v-card-title class="text-h5">¿Seguro que quieres dar de baja este proyecto?</v-card-title>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="closeDelete">CANCELAR</v-btn>
-                <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+                <v-btn color="#001021" text @click="closeDelete">CANCELAR</v-btn>
+                <v-btn color="#001021" text @click="deleteItemConfirm">OK</v-btn>
                 <v-spacer></v-spacer>
               </v-card-actions>
             </v-card>
@@ -64,14 +64,10 @@
       </template>
       <template v-slot:item.actions="{ item }">
         <v-icon small @click="deleteItem(item)">
-          mdi-close-box-outline
+          mdi-close-box
         </v-icon>
       </template>
-      <template v-slot:no-data>
-        <v-btn color="primary" @click="initialize">
-          Reset
-        </v-btn>
-      </template>
+
     </v-data-table>
   </template>
   
@@ -110,7 +106,7 @@
   
     computed: {
       formTitle() {
-        return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+        return this.editedIndex === -1 ? 'ALTA PROYECTO' : 'Edit Item'
       },
     },
   
@@ -148,17 +144,7 @@
           console.log(error)
         }
       },
-  
-      // async altaEmpleado(){
-      //   try {
-      //     const response = await axios.post('http://localhost:8080/empleados/createEmpleado', this.editItem)
-      //     const respJson = await response.json()
-      //     this.empleados = response.data
-      //     console.log('Este es el nuevo empleado ' + respJson)
-      //   } catch (error) {
-  
-      //   }
-      // },
+
   
       editItem(item) {
         this.editedIndex = this.proyectos.indexOf(item)
@@ -174,7 +160,7 @@
   
       async deleteItemConfirm() {
         try {
-          await axios.put(`http://localhost:8080/proyectos/updateProyecto/${this.editedItem.id_proyecto}`)
+          await axios.put(`http://localhost:8080/proyectos/updateProyecto/${this.editedItem.idProyecto}`)
           this.proyectos.splice(this.editedIndex, 1)
         } catch (error) {
           console.log('Error al dar de baja el proyecto', error)
